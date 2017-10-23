@@ -242,4 +242,31 @@ print(check_for_a_char_at_end(['The','end','is','near'],'z'))
 print(check_for_a_char_at_end(['x','y','z','z','z'],'z'))
 print(check_for_a_char_at_end([''],'n'))
 
+# Advanced Assignments
+# Extra credit
+
+def tax_calc(tax_info,income):
+    
+    amt_owed = 0       
+    prev_bracket = 0   # Previous tax bracket place holder
+    
+    for i in tax_info:
+        amt_owed += min(i[0]-prev_bracket,income-prev_bracket) * i[1]   # determine how much you will be taxed on in this bracket
+        
+        if i[0] > income:  # stop interating if income is lower that current tax range
+                break
+        prev_bracket = i[0]
+        
+    if income > i[0]:      # You are lucky, you make more than the top bracket
+        amt_owed += (income-i[0]) * i[1]   
+       
+    return(amt_owed)
+
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],50000))
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],100000))
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],75000))
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],1000))
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],500000))
+print(tax_calc([(50000, 0.08), (100000, 0.10), (150000, 0.15)],350000))
+
         
